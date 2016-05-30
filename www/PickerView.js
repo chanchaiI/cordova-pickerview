@@ -6,11 +6,11 @@
 // Copyright 2011-2012 Olivier Louvignes. All rights reserved.
 // MIT Licensed
 
-(function(cordova) {
 
-	function PickerView() {}
+var exec = require('cordova/exec');
 
-	PickerView.prototype.create = function(items, options, callback) {
+var pickerView = {
+	create = function(items, options, callback) {
 		options || (options = {});
 		var scope = options.scope || null;
 
@@ -44,10 +44,9 @@
 			}
 		};
 
-		return cordova.exec(_callback, _callback, 'PickerView', 'create', [config]);
-	};
-
-	PickerView.prototype.setValue = function(values, options, callback) {
+		return exec(_callback, _callback, 'PickerView', 'create', [config]);
+	},
+	setValue = function(values, options, callback) {
 		options || (options = {});
 		var scope = options.scope || null;
 
@@ -62,11 +61,8 @@
 		};
 
 		return cordova.exec(_callback, _callback, 'PickerView', 'setValue', [values, config]);
-	};
+	}
+}
 
-	cordova.addConstructor(function() {
-		if(!window.plugins) window.plugins = {};
-		window.plugins.pickerView = new PickerView();
-	});
-
-})(window.cordova || window.Cordova);
+module.exports = pickerView;
+window.pickerView = pickerView;
