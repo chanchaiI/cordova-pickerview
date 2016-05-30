@@ -318,17 +318,19 @@
 	DLog(@"didDismissWithButtonIndex:%d", buttonIndex);
 
 	// Retreive pickerView
-  NSArray *subviews = [self.actionSheet subviews];
+    NSArray *subviews = [self.actionSheet subviews];
 
-  int pickerPosition;
+    int pickerPosition;
 
-  if (systemMajorVersion == 7){
-    pickerPosition = 2;
-  }else{
-    pickerPosition = 1;
-  }
+    
+    int systemMajorVersion = [[[[UIDevice currentDevice].systemVersion componentsSeparatedByString:@"."] objectAtIndex:0] integerValue];
+    if (systemMajorVersion == 7){
+        pickerPosition = 2;
+    }else{
+        pickerPosition = 1;
+    }
 
-  UIPickerView *pickerView = [subviews objectAtIndex:pickerPosition];
+    UIPickerView *pickerView = [subviews objectAtIndex:pickerPosition];
 	[self sendResultsFromPickerView:pickerView withButtonIndex:buttonIndex];
 }
 
