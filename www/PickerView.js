@@ -10,7 +10,7 @@
 var exec = require('cordova/exec');
 
 var pickerView = {
-	create = function(items, options, callback) {
+	create: function(items, options, callback) {
 		options || (options = {});
 		var scope = options.scope || null;
 
@@ -46,7 +46,7 @@ var pickerView = {
 
 		return exec(_callback, _callback, 'PickerView', 'create', [config]);
 	},
-	setValue = function(values, options, callback) {
+	setValue: function(values, options, callback) {
 		options || (options = {});
 		var scope = options.scope || null;
 
