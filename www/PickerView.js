@@ -65,4 +65,6 @@ var pickerView = {
 }
 
 module.exports = pickerView;
-window.pickerView = pickerView;
+if(window.cordova){
+	window.cordova.pickerView = pickerView;
+}
